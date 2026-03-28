@@ -36,7 +36,7 @@ class Deck:
 
     def search(self, pattern):
         regex = re.compile(pattern, re.IGNORECASE)
-        return [card for card in self.cards if rgex.search(card.question)]       #getting the cards that match the pattern 
+        return [card for card in self.cards if regex.search(card.question)]       #getting the cards that match the pattern 
 
     def save_to_csv(self, filename="flashcards.csv"):          #saving all the flashcards to a csv file
         with open(filename,  "w", newline="") as file:
@@ -70,7 +70,7 @@ def main():
 
         if option == "1":
             question = input("enter the question ")
-            answer = input("enter the question ")
+            answer = input("enter the answer ")
             tag = input("enter a tag ")
             card = Flashcard(question, answer, tag)
             deck.add_card(card)
