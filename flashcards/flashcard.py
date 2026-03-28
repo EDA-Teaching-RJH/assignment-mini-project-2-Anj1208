@@ -54,3 +54,46 @@ class Deck:
                     self.cards.append(card)
         except FileNotFoundError:
             pass
+
+
+def main():
+    deck = Deck()
+    deck.load_from_csv()
+    while True:
+        print(" Flashcard Menu")
+        print("1. Add a flashcard")
+        print("2. Show all flashcards")
+        print("3. Search all flashcards")
+        print("4. Save all flashcards to CSV")
+        
+        option = input("Choose an option")
+
+        if option == "1":
+            question = input("enter the question ")
+            answer = input("enter the question ")
+            tag = input("enter a tag ")
+            card = Flashcard(question, answer, tag)
+            deck.add_card(card)
+            print("flashcard added")
+        
+        elif option =="2":
+            cards = deck.list_cards()
+            if not cards:
+                print("no flashcard found")
+        
+        elif option =="3":
+            pattern = input("enter a regex pattern to search")
+            results = deck.search(pattern)
+            if not results:
+                print("no matches found")
+
+        elif option =="4":
+            deck.save_to_csv()
+            print("flashcards saved to CSV")
+
+        else:
+            print("Invalid option. please try again")
+
+if __name__ == "__main__":
+    main()
+
